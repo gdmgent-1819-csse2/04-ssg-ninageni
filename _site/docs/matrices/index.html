@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href=/04-ssg-ninageni/assets/styles.css>
+  <title>Documentation - Matrices</title>
+</head>
+<body>
+  <div class="header">
+    <h1>Webgl 2 - Documentation</h1>
+  </div>
+  <div class="navigation">
+    <nav>
+      <a href=/04-ssg-ninageni/docs/vectors/>Vectors</a>
+      <a href=/04-ssg-ninageni/docs/matrices/>Martrices</a>
+      <a href=/04-ssg-ninageni/docs/clock/>Clock</a>
+    </nav>
+  </div>
+  <div class="content">
+    <h2 id="matrices">Matrices</h2>
+
+<h3 id="creating-a-matrix">Creating a matrix</h3>
+
+<p>When creating a new matrix we have to import it first then we create a new matrix.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="k">import</span> <span class="nx">Matrix2</span> <span class="k">from</span> <span class="s1">'../../../Library/Math/Matrix2.js'</span>
+
+  <span class="kd">const</span> <span class="nx">firstMatrix</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span>
+  <span class="p">]</span>
+
+  <span class="kd">const</span> <span class="nx">matrix</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Matrix2</span><span class="p">(</span><span class="nx">matrixArray</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>The code below is what happens when you create a new matrix.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">items</span><span class="p">){</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">items</span> <span class="o">=</span> <span class="nx">items</span> <span class="o">||</span> <span class="p">[</span>
+      <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+
+</code></pre></div></div>
+
+<h3 id="matrix-operations">Matrix operations</h3>
+<p>You can do multiple changes to the matrix, here is what to call them.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="nx">matrix</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">secondMatrix</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p><strong>add(m2)</strong></p>
+
+<p>When you call the <strong>add()</strong> function the function adds 2 vectors together.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="nx">add</span><span class="p">(</span><span class="nx">secondMatrix</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">firstMatrix</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">items</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="nx">firstMatrix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nx">secondMatrix</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">firstMatrix</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nx">secondMatrix</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+      <span class="nx">firstMatrix</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="nx">secondMatrix</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="nx">firstMatrix</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="nx">secondMatrix</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+
+</code></pre></div></div>
+
+<p><strong>sub(m2)</strong></p>
+
+<p>The <strong>sub()</strong> function subtracts 2 matrices.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="nx">sub</span><span class="p">(</span><span class="nx">secondMatrix</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">firstMatrix</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">items</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="nx">firstMatrix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="nx">secondMatrix</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">firstMatrix</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="nx">secondMatrix</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+      <span class="nx">firstMatrix</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="nx">secondMatrix</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="nx">firstMatrix</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="nx">secondMatrix</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+
+</code></pre></div></div>
+
+<p><strong>mul(m2)</strong></p>
+
+<p>When we call this function we get the product of 2 matrices.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="nx">mul</span><span class="p">(</span><span class="nx">secondMatrix</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">firstMatrix</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span>
+    <span class="kd">const</span> <span class="nx">resultMatrix</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="nx">resultMatrix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nx">firstMatrix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nx">secondMatrix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nx">firstMatrix</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nx">secondMatrix</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="nx">resultMatrix</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nx">firstMatrix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nx">secondMatrix</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nx">firstMatrix</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nx">secondMatrix</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="nx">resultMatrix</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="nx">firstMatrix</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="nx">secondMatrix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nx">firstMatrix</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="nx">secondMatrix</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="nx">resultMatrix</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="nx">firstMatrix</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="nx">secondMatrix</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nx">firstMatrix</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="nx">secondMatrix</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">items</span> <span class="o">=</span> <span class="nx">resultMatrix</span>
+  <span class="p">}</span>
+  
+</code></pre></div></div>
+
+<p><strong>rot(α)</strong></p>
+
+<p>This function rotates the matrix.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="nx">rot</span><span class="p">(</span><span class="err">α</span><span class="p">)</span> <span class="p">{</span>
+    <span class="err">α</span> <span class="o">*=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">/</span> <span class="mi">180</span>
+    <span class="kd">const</span> <span class="nx">cos</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="err">α</span><span class="p">)</span>
+    <span class="kd">const</span> <span class="nx">sin</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="err">α</span><span class="p">)</span>
+    <span class="kd">const</span> <span class="nx">firstMatrix</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span>
+    <span class="kd">const</span> <span class="nx">rotationMatrix</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="nx">cos</span><span class="p">,</span> <span class="o">-</span><span class="nx">sin</span><span class="p">,</span>
+        <span class="nx">sin</span><span class="p">,</span> <span class="nx">cos</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">items</span> <span class="o">=</span> <span class="nx">rotationMatrix</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">mul</span><span class="p">(</span><span class="nx">firstMatrix</span><span class="p">);</span>
+  <span class="p">}</span>
+
+</code></pre></div></div>
+
+
+  </div>
+</body>
+</html>

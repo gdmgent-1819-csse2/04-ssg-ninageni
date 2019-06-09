@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href=/04-ssg-ninageni/assets/styles.css>
+  <title>Documentation - Clock</title>
+</head>
+<body>
+  <div class="header">
+    <h1>Webgl 2 - Documentation</h1>
+  </div>
+  <div class="navigation">
+    <nav>
+      <a href=/04-ssg-ninageni/docs/vectors/>Vectors</a>
+      <a href=/04-ssg-ninageni/docs/matrices/>Martrices</a>
+      <a href=/04-ssg-ninageni/docs/clock/>Clock</a>
+    </nav>
+  </div>
+  <div class="content">
+    <h2 id="clock">Clock</h2>
+
+<p>We are going to create a clock and this will be the end result.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="nx">updateCanvasHandler</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'updateCanvas'</span><span class="p">)</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">clearData</span><span class="p">()</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">positions</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">push</span><span class="p">(...</span><span class="k">this</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">white</span><span class="p">)</span>
+
+    <span class="kd">const</span> <span class="nx">vector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vector2</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">positions</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">vector</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">vector</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">push</span><span class="p">(...</span><span class="k">this</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">white</span><span class="p">)</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+      <span class="nx">vector</span><span class="p">.</span><span class="nx">rot</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">positions</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">vector</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">vector</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">push</span><span class="p">(...</span><span class="k">this</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">white</span><span class="p">)</span>
+    <span class="p">}</span> 
+
+    <span class="kd">const</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
+
+    <span class="kd">let</span> <span class="nx">seconds</span> <span class="o">=</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getSeconds</span><span class="p">()</span>
+    <span class="kd">let</span> <span class="nx">minutes</span> <span class="o">=</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">()</span>
+    <span class="kd">let</span> <span class="nx">hours</span> <span class="o">=</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span>
+
+    <span class="kd">let</span> <span class="nx">secondsVector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vector2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)</span>
+    <span class="nx">secondsVector</span><span class="p">.</span><span class="nx">rot</span><span class="p">(</span><span class="nx">seconds</span> <span class="o">*</span> <span class="o">-</span><span class="mi">6</span><span class="p">)</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">positions</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">secondsVector</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">secondsVector</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">push</span><span class="p">(...</span><span class="k">this</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">red</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nx">minutesVector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vector2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)</span>
+    <span class="nx">minutesVector</span><span class="p">.</span><span class="nx">rot</span><span class="p">(</span><span class="nx">minutes</span> <span class="o">*</span> <span class="o">-</span><span class="mi">6</span><span class="p">)</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">positions</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">minutesVector</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">minutesVector</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">push</span><span class="p">(...</span><span class="k">this</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">blue</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nx">hoursVector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vector2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)</span>
+    <span class="nx">hoursVector</span><span class="p">.</span><span class="nx">rot</span><span class="p">(</span><span class="nx">hours</span> <span class="o">*</span> <span class="o">-</span><span class="mi">6</span><span class="p">)</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">positions</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">hoursVector</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">hoursVector</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">push</span><span class="p">(...</span><span class="k">this</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">cyan</span><span class="p">)</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">drawScene</span><span class="p">()</span>
+  <span class="p">}</span>
+
+</code></pre></div></div>
+
+<h3 id="creating-the-clock">Creating the clock</h3>
+
+<p>Clear all the data first then we will create a white point in the middle.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="k">this</span><span class="p">.</span><span class="nx">clearData</span><span class="p">()</span>
+
+  <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">positions</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">push</span><span class="p">(...</span><span class="k">this</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">white</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>Now we will create a new vector for the 12 points that represent the hours. We are going to rotate this vector so we get 12 points.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="kd">const</span> <span class="nx">v</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vector2</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">positions</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">v</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">push</span><span class="p">(...</span><span class="k">this</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">white</span><span class="p">)</span>
+
+  <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="nx">v</span><span class="p">.</span><span class="nx">rot</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">positions</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">v</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">push</span><span class="p">(...</span><span class="k">this</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">white</span><span class="p">)</span>
+  <span class="p">}</span> 
+
+</code></pre></div></div>
+
+<h3 id="setting-the-time">Setting the time</h3>
+
+<p>First we get the time.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  
+  <span class="kd">const</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
+
+  <span class="kd">let</span> <span class="nx">seconds</span> <span class="o">=</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getSeconds</span><span class="p">()</span>
+  <span class="kd">let</span> <span class="nx">minutes</span> <span class="o">=</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">()</span>
+  <span class="kd">let</span> <span class="nx">hours</span> <span class="o">=</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<p>After we get the time, we convert it to vectors.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="kd">let</span> <span class="nx">secondsVector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vector2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+  <span class="nx">secondsVector</span><span class="p">.</span><span class="nx">rot</span><span class="p">(</span><span class="nx">seconds</span> <span class="o">*</span> <span class="o">-</span><span class="mi">6</span><span class="p">)</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">positions</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">secondsVector</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">secondsVector</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">push</span><span class="p">(...</span><span class="k">this</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">red</span><span class="p">)</span>
+  <span class="kd">let</span> <span class="nx">minutesVector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vector2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)</span>
+  <span class="nx">minutesVector</span><span class="p">.</span><span class="nx">rot</span><span class="p">(</span><span class="nx">minutes</span> <span class="o">*</span> <span class="o">-</span><span class="mi">6</span><span class="p">)</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">positions</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">minutesVector</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">minutesVector</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">push</span><span class="p">(...</span><span class="k">this</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">yellow</span><span class="p">)</span>
+  <span class="kd">let</span> <span class="nx">hoursVector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vector2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+  <span class="nx">hoursVector</span><span class="p">.</span><span class="nx">rot</span><span class="p">(</span><span class="nx">hours</span> <span class="o">*</span> <span class="o">-</span><span class="mi">6</span><span class="p">)</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">positions</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">hoursVector</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">hoursVector</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">push</span><span class="p">(...</span><span class="k">this</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">green</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h3 id="draw-the-time">Draw the time</h3>
+
+<p>Then we will put the time on the screen.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  
+  <span class="k">this</span><span class="p">.</span><span class="nx">drawScene</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+
+  </div>
+</body>
+</html>

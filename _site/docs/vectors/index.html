@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href=/04-ssg-ninageni/assets/styles.css>
+  <title>Webgl2 - Vectors</title>
+</head>
+<body>
+  <div class="header">
+    <h1>Webgl 2 - Documentation</h1>
+  </div>
+  <div class="navigation">
+    <nav>
+      <a href=/04-ssg-ninageni/docs/vectors/>Vectors</a>
+      <a href=/04-ssg-ninageni/docs/matrices/>Martrices</a>
+      <a href=/04-ssg-ninageni/docs/clock/>Clock</a>
+    </nav>
+  </div>
+  <div class="content">
+    <h2 id="vectors">Vectors</h2>
+
+<h3 id="creating-a-vector">Creating a vector</h3>
+
+<p>When creating a new vector we have to import it first then we create a new vector.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="k">import</span> <span class="nx">Vector2</span> <span class="k">from</span> <span class="s1">'../../../Library/Math/Vector2.js'</span>
+
+  <span class="kd">const</span> <span class="nx">firstVector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vector2</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+  
+</code></pre></div></div>
+
+<p>The code below is what happens when you create a new vector.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> 
+  <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">||</span> <span class="mi">0</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="o">||</span> <span class="mi">0</span>
+  <span class="p">}</span>
+
+</code></pre></div></div>
+
+<h3 id="vector-operations">Vector operations</h3>
+<p>You can do multiple changes to the vector, here is how to call them.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="nx">firstVector</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">secondVector</span><span class="p">)</span>
+  <span class="nx">firstVector</span><span class="p">.</span><span class="nx">scalar</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p><strong>add(v2)</strong></p>
+
+<p>When you call the <strong>add()</strong> function the function adds 2 vectors together.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="nx">add</span><span class="p">(</span><span class="nx">secondVector</span><span class="p">)</span> 
+  <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+=</span> <span class="nx">secondVector</span><span class="p">.</span><span class="nx">x</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">+=</span> <span class="nx">secondVector</span><span class="p">.</span><span class="nx">y</span>
+  <span class="p">}</span>
+
+</code></pre></div></div>
+
+<p><strong>sub(v2)</strong></p>
+
+<p>The <strong>sub()</strong> function subtracts 2 vectors.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="nx">sub</span><span class="p">(</span><span class="nx">secondVector</span><span class="p">)</span> 
+  <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">-=</span> <span class="nx">secondVector</span><span class="p">.</span><span class="nx">x</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">-=</span> <span class="nx">secondVector</span><span class="p">.</span><span class="nx">y</span>
+  <span class="p">}</span>
+
+</code></pre></div></div>
+
+<p><strong>scalar(a)</strong></p>
+
+<p>This function multiplies a vector by a given number.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="nx">scalar</span><span class="p">(</span><span class="nx">scalar</span><span class="p">)</span> 
+  <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">*=</span> <span class="nx">scalar</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">*=</span> <span class="nx">scalar</span>
+  <span class="p">}</span>
+
+</code></pre></div></div>
+
+<p><strong>dot(v2)</strong></p>
+
+<p>When we call this function we get the product of 2 vectors.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="nx">dot</span><span class="p">(</span><span class="nx">secondVector</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">*</span> <span class="nx">secondVector</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">*</span> <span class="nx">secondVector</span><span class="p">.</span><span class="nx">y</span>
+  <span class="p">}</span>
+
+</code></pre></div></div>
+
+<p><strong>norm()</strong></p>
+
+<p>This function gives us the length of the vector.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="nx">norm</span><span class="p">()</span> 
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+  <span class="p">}</span>
+
+</code></pre></div></div>
+
+<p><strong>rot(α)</strong></p>
+
+<p>This function rotates the vector.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="nx">rot</span><span class="p">(</span><span class="err">α</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">matrix</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Matrix2</span><span class="p">([</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> 
+      <span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="p">])</span>
+    <span class="nx">matrix</span><span class="p">.</span><span class="nx">rot</span><span class="p">(</span><span class="err">α</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">matrix</span><span class="p">)</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">matrix</span><span class="p">.</span><span class="nx">items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">matrix</span><span class="p">.</span><span class="nx">items</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+  <span class="p">}</span>
+  
+</code></pre></div></div>
+
+
+  </div>
+</body>
+</html>
